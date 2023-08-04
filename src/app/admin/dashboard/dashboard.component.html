@@ -119,9 +119,10 @@
                 </button>
                 <div class="dropdown-menu">
                   <a class="dropdown-item" *ngFor="let year of Years">
-                    <span [ngSwitch]="year"></span>
+                    <span [ngSwitch]="year">
                     <span *ngSwitchCase="'2019'" style="color: green;" >{{year}}</span>
                     <span *ngSwitchDefault  style="color: red;" >{{year}}</span>
+                  </span>
                   </a>
                  
                 </div>

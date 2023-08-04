@@ -8,12 +8,24 @@ import { Project } from './project'
 })
 export class ProjectsService {
 
+  urlPrefix: string = "http://localhost:5253";
   constructor(private httpClient:HttpClient) { }
 
 
   getAllProjects():Observable<Project[]>{
-    return this.httpClient.get<Project[]>("api/projects")
+    return this.httpClient.get<Project[]>(this.urlPrefix + "/api/projects",{responseType:"json"})
     
   }
 
+  insertProject(newProject:Project):Observable<Project>{
+    return this.httpClient.post<Project>(this.urlPrefix + "/api/projects",newProject,{responseType:"json"});
+  }
+
+  updateProject(existingProject:Project):Observable<Project>{
+    return this.httpClient.put<Project>(this.urlPrefix + "/api/projects",existingProject,{responseType:"json"});
+  }
+
+  deleteProject(ProjectID:number):Observable<string>{
+    return this.httpClient.delete<string>(this.urlPrefix + "/api/projects?ProjectID=ProjectID");
+  }
 }
